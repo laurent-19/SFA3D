@@ -86,7 +86,7 @@ if __name__ == '__main__':
             img_bgr = cv2.resize(img_bgr, (cnf.BEV_WIDTH * 2, 375))
 
             out_img = np.concatenate((img_bgr, full_bev), axis=0)
-            write_credit(out_img, (50, 410), text_author='Cre: github.com/maudzung', org_fps=(900, 410), fps=fps)
+            write_credit(out_img, (50, 410), text_author='Jetson Nano', org_fps=(900, 410), fps=fps)
 
             if out_cap is None:
                 out_cap_h, out_cap_w = out_img.shape[:2]

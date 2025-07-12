@@ -78,7 +78,7 @@ if __name__ == '__main__':
                 img_bgr = show_rgb_image_with_boxes(img_bgr, kitti_dets, calib)
 
             out_img = merge_rgb_to_bev(img_bgr, bev_map, output_width=configs.output_width)
-            write_credit(out_img, (80, 210), text_author='Cre: github.com/maudzung', org_fps=(80, 250), fps=fps)
+            write_credit(out_img, (80, 210), text_author='Jetson Nano', org_fps=(80, 250), fps=fps)
             if out_cap is None:
                 out_cap_h, out_cap_w = out_img.shape[:2]
                 fourcc = cv2.VideoWriter_fourcc(*'MJPG')

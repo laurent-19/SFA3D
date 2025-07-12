@@ -55,6 +55,8 @@ def parse_demo_configs():
                         help='the type of the test output (support image or video)')
     parser.add_argument('--output-width', type=int, default=608,
                         help='the width of showing output, the height maybe vary')
+    parser.add_argument('--jclock', action='store_true',
+                        help='If true, enable Jetson maximum performance clocks during benchmarking')
 
     configs = edict(vars(parser.parse_args()))
     configs.pin_memory = True
@@ -118,7 +120,7 @@ def do_detect(configs, model, bevmap, is_front):
     # detections size (batch_size, K, 10)
     detections = decode(outputs['hm_cen'], outputs['cen_offset'], outputs['direction'], outputs['z_coor'],
                         outputs['dim'], K=configs.K)
-    detections = detections.cpu().numpy().astype(np.float32)
+    detections = detections.detach().cpu().numpy().astype(np.float32)
     detections = post_processing(detections, configs.num_classes, configs.down_ratio, configs.peak_thresh)
     t2 = time_synchronized()
     # Inference speed
