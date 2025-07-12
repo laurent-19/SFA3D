@@ -119,6 +119,46 @@ tensorboard --logdir=./
 
 - Then go to [http://localhost:6006/](http://localhost:6006/)
 
+## 2.4. Benchmarking, Statistics, and Live Video
+
+To benchmark inference speed and collect statistics (e.g., FPS, system stats) on Jetson devices, use the provided scripts:
+
+```shell
+# For detailed stats and benchmarking
+python sfa/demo_2_sides_stats.py --jclock
+python sfa/demo_front_stats.py --jclock
+```
+
+```shell
+# For live video rendering
+python sfa/demo_2_sides_live.py
+```
+
+```shell
+# Check jtop stats API
+python sfa/stats.py
+```
+
+### Notes:
+- The `--jclock` flag enables Jetson maximum performance clocks for consistent benchmarking.
+- Stats scripts print detailed FPS and runtime statistics, and can output all available `jtop` system stats (CPU, GPU, RAM, temperature, etc.) for full hardware monitoring.
+- Sample stats outputs (e.g., `results/fpn_resnet_18/2sides_jclock.csv`) are available in the `results/` directory for reference.
+### PyTorch for Jetson
+
+**Tested Jetson Environment:**  
+- PyTorch v2.1.0  
+- JetPack 6.0 DP (L4T R36.2.0)  
+- Python 3.10  
+- torch-2.1.0-cp310-cp310-linux_aarch64.whl (USE_DISTRIBUTED=on)
+
+For best performance on Jetson devices, install the official NVIDIA PyTorch wheel:
+
+[Download PyTorch for Jetson (Python 3.8, CUDA 10.2)](https://nvidia.box.com/shared/static/0h6tk4msrl9xz3evft9t0mpwwwkw7a32.whl)
+
+Install with:
+```shell
+pip install https://nvidia.box.com/shared/static/0h6tk4msrl9xz3evft9t0mpwwwkw7a32.whl
+```
 
 ## Contact
 
